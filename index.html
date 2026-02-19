@@ -20,11 +20,110 @@
 
         font-family: courier, courier-new;
     }
+    
+.card {
+    position: relative; /* important for stickers */
+    width: 300px;
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    border: 4px solid #ffd6e7;
+}
+
+.header {
+    background: #ffd6e7;
+    padding: 8px;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 5px solid #ffe3f0;
+    display: block;
+    margin: 10px auto;
+}
+
+.info {
+    text-align: left;
+    margin-top: 14px;
+}
+
+.info p {
+    margin: 6px 0;
+}
+
+.fun {
+    background: #fff0f6;
+    padding: 12px 15px;  /* more padding for a nice rectangle */
+    border-radius: 12px;
+    font-size: 13px;
+    text-align: indent;
+
+    display: block;      /* ensures it takes width like a block */
+    width: 100%;         /* stretch across the card */
+    box-sizing: border-box; /* includes padding in width */
+    margin-top: 10px;    /* spacing from above */
+}
+
+.sticker {
+    width: 50px; /* adjust size */
+    height: 50px;
+    position: absolute; /* floats on card */
+    transform: rotate(0deg); /* optional rotation */
+}
+
+.sticker-top-left { top: 10px; left: 10px; transform: rotate(-15deg); }
+.sticker-top-right { top: 10px; right: 10px; transform: rotate(10deg); }
+.sticker-bottom-left { bottom: 178px; left: 10px; transform: rotate(5deg); }
+.sticker-bottom-right { bottom: 20px; right: 10px; transform: rotate(-10deg); }
+.sticker-center { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(5deg); }
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="header">STUDENT ID</div>
+
+  <img src="me.jpg" class="photo">
+
+  <!-- Stickers -->
+  <img src="sticker1.png" class="sticker sticker-top-left">
+  <img src="sticker2.png" class="sticker sticker-top-right">
+  <img src="sticker3.png" class="sticker sticker-bottom-left">
+  <img src="sticker4.png" class="sticker sticker-bottom-right">
+  <!-- You can add more stickers here -->
+
+  <div class="info">
+    <p><b>Name:</b> Marianne Helaena S. Polandaya</p>
+    <p><b>Student Number:</b> 100444</p>
+    <p><b>Section:</b> CS-1B</p>
+    <p><b>Course:</b> BS Computer Science</p>
+  </div>
+
+  <div class="fun">
+    <p> Hi! You can call me Marianne, and I'm 18 years old. I live here in Silang, Cavite. My two biggest interests are literature and arts. Growing up, the best way to kill my boredom was to pour everything on a piece of paper. I write about the life I long to live, and paint the world the way I wish to see it.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
 </style>
 </head>
 <body>
     <p>hi!!</p>
 </body>
 </html>
+
 
 
