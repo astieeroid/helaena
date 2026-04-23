@@ -176,46 +176,65 @@
         <div class="submissions-lightbox-close">Click anywhere to close preview</div>
     </div>
 
-    <script>
-        const hardCodedData = [
-            { title: "Quiz 1", proof: "quizzes/quiz1.jpeg"},
-            { title: "Quiz 2 - HTML" , proof: "quizzes/quiz2.jpeg"},
-            { title: "Quiz 3 - CSS" , proof: ["quizzes/quiz3_1.jpeg", "quizzes/quiz3_2.jpeg"] },
-            { title: "LABORATORY WORK - CAROUSELL" , proof: "laboratories/lab1.jpeg" },
-            
-        ];
-
-        const allItems = [...hardCodedData, ...(JSON.parse(localStorage.getItem('academicData')) || [])];
-        const quizSpace = document.getElementById('quiz-space');
-        const labSpace = document.getElementById('lab-space');
-        const examSpace = document.getElementById('exam-space');
-
-        allItems.forEach(item => {
-            const fileLine = item.file ? `<span>📁 ${item.file}</span>` : '';
-            
-            const cardHTML = `
-                <div class="submissions-card" onclick="openFullView('${item.proof}')">
-                    <img src="${item.proof}" alt="Proof">
-                    <b>${item.title}</b>
-                    ${fileLine}
-                </div>
-            `;
-
-            const title = item.title.toLowerCase();
-            if (title.includes('quiz')) quizSpace.innerHTML += cardHTML;
-            else if (title.includes('lab')) labSpace.innerHTML += cardHTML;
-            else if (title.includes('exam')) examSpace.innerHTML += cardHTML;
-        });
-
-        function openFullView(src) {
-            document.getElementById('fullImage').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
+<script>
+    const hardCodedData = [
+        { 
+            title: "Quiz 1", 
+            proof: "quizzes/quiz1.jpeg" 
+        },
+        { 
+            title: "Quiz 2 - HTML", 
+            proof: "quizzes/quiz2.jpeg" 
+        },
+        { 
+            title: "Quiz 3 - CSS", 
+            proof: ["quizzes/quiz3_1.jpeg", "quizzes/quiz3_2.jpeg"] 
+        },
+        { 
+            title: "LABORATORY WORK - CAROUSELL", 
+            proof: "laboratories/lab1.jpeg" 
         }
+    ];
 
-        function closeFullView() {
-            document.getElementById('lightbox').style.display = 'none';
+    const localData = JSON.parse(localStorage.getItem('academicData')) || [];
+    const allItems = [...hardCodedData, ...localData];
+
+    const quizSpace = document.getElementById('quiz-space');
+    const labSpace = document.getElementById('lab-space');
+    const examSpace = document.getElementById('exam-space');
+
+    allItems.forEach(item => {
+        const thumbnail = Array.isArray(item.proof) ? item.proof[0] : item.proof;
+        const preview = Array.isArray(item.proof) ? item.proof[0] : item.proof;
+        const fileLine = item.file ? `<span>📁 ${item.file}</span>` : '';
+        
+        const cardHTML = `
+            <div class="submissions-card" onclick="openFullView('${preview}')">
+                <img src="${thumbnail}" alt="Proof">
+                <b>${item.title}</b>
+                ${fileLine}
+            </div>
+        `;
+
+        const title = item.title.toLowerCase();
+        if (title.includes('quiz')) {
+            quizSpace.innerHTML += cardHTML;
+        } else if (title.includes('lab')) {
+            labSpace.innerHTML += cardHTML;
+        } else if (title.includes('exam')) {
+            examSpace.innerHTML += cardHTML;
         }
-    </script>
+    });
+
+    function openFullView(src) {
+        document.getElementById('fullImage').src = src;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeFullView() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
