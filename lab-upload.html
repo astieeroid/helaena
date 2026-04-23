@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Upload</title>
+    <style>
+        :root {
+            --bg: #f2cecd;
+            --text: #ce8f9e;
+            --sub: #818455;
+            --accent: #f9f6f4;
+            --card-bg: #eacfd9;
+        }
+
+        body {
+            background-color: var(--accent);
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .upload-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .upload-title {
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            font-size: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            display: block;
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--sub);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #f0f0f0;
+            background: #fafafa;
+            box-sizing: border-box;
+        }
+
+        .file-input {
+            font-size: 11px;
+            color: var(--sub);
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--sub);
+            color: var(--card-bg);
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 11px;
+            color: var(--sub);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upload-card">
+        <h2 id="pageTitle" class="upload-title">Laboratory Upload</h2>
+
+        <div class="input-group">
+            <label class="label">Laboratory Title / Description</label>
+            <input type="text" id="title" class="text-input" placeholder="e.g., Lab 01 - Carousell">
+        </div>
+
+        <div class="input-group">
+            <label class="label">Lab Report File</label>
+            <input type="file" id="fileInput" class="file-input">
+        </div>
+
+        <div class="input-group">
+            <label class="label">Screenshots / Proof (Image)</label>
+            <input type="file" id="proofInput" class="file-input">
+        </div>
+
+        <button class="submit-btn" onclick="saveToMachine()">SUBMIT LABORATORY WORK</button>
+        <a href="dashboard.html" class="back-link">← Cancel and go back</a>
+    </div>
+
+    <script>
+        function saveToMachine() {
+            const titleInput = document.getElementById('title').value;
+            const fileInput = document.getElementById('fileInput').value.split('\\').pop();
+            const proofInput = document.getElementById('proofInput').value.split('\\').pop();
+
+            if (!titleInput || !proofInput) {
+                return alert("Description and Proof are required!");
+            }
+
+            const newEntry = {
+                title: titleInput,
+                file: fileInput,
+                proof: proofInput,
+                date: new Date().toLocaleDateString()
+            };
+
+            let uploads = JSON.parse(localStorage.getItem('academicData')) || [];
+            uploads.push(newEntry);
+            localStorage.setItem('academicData', JSON.stringify(uploads));
+
+            alert("Laboratory work uploaded!");
+            window.location.href = 'view-submissions.html';
+        }
+    </script>
+
+</body>
+</html>

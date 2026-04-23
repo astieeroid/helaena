@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helaena's Dashboard</title>
+    <style>
+        :root {
+            --bg: #f2cecd;
+            --text: #ce8f9e;
+            --sub: #818455;
+            --accent: #f9f6f4;
+            --card-bg: #eacfd9;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: sans-serif;
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dash-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .dash-back-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #818455;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #818455;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .dash-greeting-area h1 {
+            font-size: 26px;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .dash-greeting-area p {
+            font-size: 13px;
+            color: var(--sub);
+            margin: 5px 0 25px;
+        }
+
+        .dash-section-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .dash-card-link {
+            text-decoration: none;
+            display: contents;
+        }
+
+        .dash-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 5px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .dash-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .dash-card-pattern {
+            height: 90px;
+            background: #eee;
+            flex-shrink: 0;
+        }
+
+        .dash-card-pattern img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dash-card-content {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .dash-card-content b {
+            font-size: 13px;
+            color: var(--text);
+            display: block;
+        }
+
+        .dash-card-content span {
+            font-size: 10px;
+            color: var(--sub);
+            line-height: 1.2;
+        }
+
+        .dash-card-icons {
+            display: flex;
+            gap: 10px;
+            font-size: 14px;
+            padding-top: 5px;
+        }
+
+        .dash-footer-link {
+            text-decoration: none;
+            display: block;
+            margin-top: 30px;
+        }
+
+        .dash-action-bar {
+            background: #818455;
+            color: #f2cecd;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .dash-action-bar:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dash-container">
+        <a href="index.html" class="dash-back-btn">← BACK TO HOME</a>
+
+        <div class="dash-greeting-area">
+            <h1 id="greet">Good Evening, Helaena</h1>
+            <p>Categorize and secure your files.</p>
+        </div>
+
+        <div class="dash-section-label">Dashboard</div>
+
+        <div class="dash-grid">
+            <a href="quiz-upload.html" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-card-pattern">
+                        <img src="runaway.gif" alt="Quizzes">
+                    </div>
+                    <div class="dash-card-content">
+                        <div>
+                            <b>Quizzes</b>
+                            <span>Title, File, & Proof</span>
+                        </div>
+                        <div class="dash-card-icons">🔔 💬 →</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="lab-upload.html" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-card-pattern">
+                        <img src="bubbles.gif" alt="Laboratory">
+                    </div>
+                    <div class="dash-card-content">
+                        <div>
+                            <b>Laboratory</b>
+                            <span>Reports & Screenshots</span>
+                        </div>
+                        <div class="dash-card-icons">🔔 💬 →</div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="exam-upload.html" class="dash-card-link">
+                <div class="dash-card">
+                    <div class="dash-card-pattern">
+                        <img src="blossom.gif" alt="Major Exams">
+                    </div>
+                    <div class="dash-card-content">
+                        <div>
+                            <b>Major Exams</b>
+                            <span>Midterms & Finals</span>
+                        </div>
+                        <div class="dash-card-icons">🔔 💬 →</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <a href="view-submissions.html" class="dash-footer-link">
+            <div class="dash-action-bar">VIEW SUBMISSIONS</div>
+        </a>
+    </div>
+
+    <script>
+        function updateGreeting() {
+            const greet = document.getElementById('greet');
+            const hour = new Date().getHours();
+            let welcome = "Good Evening";
+
+            if (hour < 12) welcome = "Good Morning";
+            else if (hour < 18) welcome = "Good Afternoon";
+
+            greet.textContent = `${welcome}, Helaena!`;
+        }
+        updateGreeting();
+    </script>
+
+</body>
+</html>
