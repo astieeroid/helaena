@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helaena's Upload Center</title>
+    <style>
+        :root {
+            --bg: #f2cecd;
+            --text: #ce8f9e;
+            --sub: #818455;
+            --accent: #f9f6f4;
+            --card-bg: #eacfd9;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: sans-serif;
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .layout-wrapper {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .nav-back-link {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--sub);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--sub);
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .header-content h1 {
+            font-size: 26px;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .header-content p {
+            font-size: 13px;
+            color: var(--sub);
+            margin: 5px 0 25px;
+        }
+
+        .section-divider {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .upload-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .category-upload-item {
+            text-decoration: none;
+            background-color: var(--text);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-upload-item:hover {
+            background-color: var(--sub);
+            transform: translateX(10px);
+        }
+
+        .item-info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .item-info-group b {
+            font-size: 20px;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .item-info-group span {
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        .action-arrow {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            .category-upload-item {
+                padding: 20px 30px;
+            }
+            .item-info-group b {
+                font-size: 18px;
+            }
+            .item-info-group span {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        <a href="index.html" class="nav-back-link">← BACK TO HOME</a>
+
+        <div class="header-content">
+            <h1>Upload Center</h1>
+            <p>Select a category to secure your academic files.</p>
+        </div>
+
+        <div class="section-divider">Choose Category</div>
+
+        <div class="upload-list-container">
+            <a href="quiz-upload.html" class="category-upload-item">
+                <div class="item-info-group">
+                    <b>Quizzes</b>
+                    <span>Title, File, & Proof</span>
+                </div>
+                <div class="action-arrow">→</div>
+            </a>
+
+            <a href="lab-upload.html" class="category-upload-item">
+                <div class="item-info-group">
+                    <b>Lab Works</b>
+                    <span>Reports & Screenshots</span>
+                </div>
+                <div class="action-arrow">→</div>
+            </a>
+
+            <a href="exam-upload.html" class="category-upload-item">
+                <div class="item-info-group">
+                    <b>Major Exams</b>
+                    <span>Midterms & Finals</span>
+                </div>
+                <div class="action-arrow">→</div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
