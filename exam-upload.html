@@ -115,7 +115,7 @@
         </div>
 
         <button class="submit-btn" onclick="saveToMachine()">SUBMIT EXAM</button>
-        <a href="dashboard.html" class="back-link">← Cancel and go back</a>
+        <a href="upload-pages.html" class="back-link">← Cancel and go back</a>
     </div>
 
     <script>
@@ -129,7 +129,7 @@
             }
 
             const newEntry = {
-                title: titleInput,
+                title: "exam: " + titleInput,
                 file: fileInput,
                 proof: proofInput,
                 date: new Date().toLocaleDateString()
@@ -139,9 +139,9 @@
             uploads.push(newEntry);
             localStorage.setItem('academicData', JSON.stringify(uploads));
 
-            alert("Exam uploaded locally! Remember to hard-code this entry to make it public:)");
+            alert("Exam uploaded! Check your Dashboard.");
 
-            window.location.href = 'submissions.html';
+            window.location.href = 'dashboard.html';
         }
     </script>
 
