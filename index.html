@@ -157,21 +157,23 @@
 
         .btn-group {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 20px;
+            width: 100%;
         }
 
         .dashboard-link-btn, .submissions-link-btn {
-            display: inline-block;
+            display: block;
             text-decoration: none;
-            padding: 8px 10px;
+            padding: 10px;
             border-radius: 20px;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
-            border: 1px solid var(--text);
+            border: 1.5px solid transparent;
             text-align: center;
-            flex: 1;
+            transition: 0.3s;
         }
 
         .dashboard-link-btn {
@@ -182,6 +184,11 @@
         .submissions-link-btn {
             background: var(--card-bg);
             color: white;
+        }
+
+        .dashboard-link-btn:hover, .submissions-link-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
         }
 
         .aesthetic-blinkies {
@@ -274,6 +281,9 @@
             .social-links {
                 justify-content: center;
             }
+            .btn-group {
+                max-width: 300px;
+            }
         }
 
         @keyframes rainbowMove {
@@ -315,7 +325,7 @@
 
                 <div class="btn-group">
                     <a href="dashboard.html" class="dashboard-link-btn">Dashboard</a>
-                    <a href=upload-pages.html" class="submissions-link-btn">Upload Work</a>
+                    <a href="upload-pages.html" class="submissions-link-btn">Upload Work</a>
                 </div>
 
                 <div class="aesthetic-blinkies">
