@@ -37,6 +37,8 @@
             font-size: 11px;
             font-weight: bold;
             margin-bottom: 20px;
+            cursor: pointer;
+            background: none;
         }
 
         .dash-greeting-area h1 {
@@ -60,15 +62,11 @@
             margin-bottom: 20px;
         }
 
+        /* Grid for main categories */
         .dash-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-        }
-
-        .dash-card-link {
-            text-decoration: none;
-            display: contents;
         }
 
         .dash-card {
@@ -78,155 +76,152 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
-            position: relative;
-            margin-bottom: 5px;
             transition: transform 0.2s;
             cursor: pointer;
         }
 
-        .dash-card:hover {
-            transform: translateY(-3px);
+        .dash-card:hover { transform: translateY(-3px); }
+
+        .dash-card-pattern { height: 90px; background: #eee; }
+        .dash-card-pattern img { width: 100%; height: 100%; object-fit: cover; }
+
+        .dash-card-content { padding: 10px; }
+        .dash-card-content b { font-size: 13px; color: var(--text); display: block; }
+        .dash-card-content span { font-size: 10px; color: var(--sub); }
+
+        /* View Area for Submissions */
+        #viewArea { display: none; }
+        .submission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
         }
 
-        .dash-card-pattern {
-            height: 90px;
-            background: #eee;
-            flex-shrink: 0;
-        }
-
-        .dash-card-pattern img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .dash-card-content {
+        .sub-card {
+            background: var(--card-bg);
             padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
-        .dash-card-content b {
-            font-size: 13px;
-            color: var(--text);
-            display: block;
-        }
-
-        .dash-card-content span {
-            font-size: 10px;
-            color: var(--sub);
-            line-height: 1.2;
-        }
-
-        .dash-card-icons {
-            display: flex;
-            gap: 10px;
-            font-size: 14px;
-            padding-top: 5px;
-        }
-
-        .dash-footer-link {
-            text-decoration: none;
-            display: block;
-            margin-top: 30px;
-        }
-
-        .dash-action-bar {
-            background: #818455;
-            color: #f2cecd;
+            border-radius: 15px;
             text-align: center;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: opacity 0.2s;
         }
 
-        .dash-action-bar:hover {
-            opacity: 0.9;
+        .sub-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
         }
+
+        .sub-card b { display: block; margin-top: 8px; font-size: 12px; color: var(--text); }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <div class="dash-container">
-        <a href="index.html" class="dash-back-btn">← BACK TO HOME</a>
+        <button id="backBtn" class="dash-back-btn" onclick="showDashboard()">← BACK TO HOME</button>
 
         <div class="dash-greeting-area">
             <h1 id="greet">Good Evening, Helaena</h1>
-            <p>Categorize and secure your files.</p>
+            <p id="subGreeting">Categorize and secure your files.</p>
         </div>
 
-        <div class="dash-section-label">Dashboard</div>
+        <div id="sectionLabel" class="dash-section-label">Dashboard</div>
 
-        <div class="dash-grid">
-            <a href="quiz-upload.html" class="dash-card-link">
-                <div class="dash-card">
-                    <div class="dash-card-pattern">
-                        <img src="helae/runaway.gif" alt="Quizzes">
-                    </div>
-                    <div class="dash-card-content">
-                        <div>
-                            <b>Quizzes</b>
-                            <span>Title, File, & Proof</span>
-                        </div>
-                        <div class="dash-card-icons">🔔 💬 →</div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="lab-upload.html" class="dash-card-link">
-                <div class="dash-card">
-                    <div class="dash-card-pattern">
-                        <img src="helae/bubbles.gif" alt="Laboratory">
-                    </div>
-                    <div class="dash-card-content">
-                        <div>
-                            <b>Laboratory</b>
-                            <span>Reports & Screenshots</span>
-                        </div>
-                        <div class="dash-card-icons">🔔 💬 →</div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="exam-upload.html" class="dash-card-link">
-                <div class="dash-card">
-                    <div class="dash-card-pattern">
-                        <img src="helae/blossom.gif" alt="Major Exams">
-                    </div>
-                    <div class="dash-card-content">
-                        <div>
-                            <b>Major Exams</b>
-                            <span>Midterms & Finals</span>
-                        </div>
-                        <div class="dash-card-icons">🔔 💬 →</div>
-                    </div>
-                </div>
-            </a>
+        <div id="mainDashboard" class="dash-grid">
+            <div class="dash-card" onclick="showCategory('quiz')">
+                <div class="dash-card-pattern"><img src="helae/runaway.gif"></div>
+                <div class="dash-card-content"><b>Quizzes</b><span>View Tests</span></div>
+            </div>
+            <div class="dash-card" onclick="showCategory('lab')">
+                <div class="dash-card-pattern"><img src="helae/bubbles.gif"></div>
+                <div class="dash-card-content"><b>Laboratory</b><span>View Reports</span></div>
+            </div>
+            <div class="dash-card" onclick="showCategory('exam')">
+                <div class="dash-card-pattern"><img src="helae/blossom.gif"></div>
+                <div class="dash-card-content"><b>Major Exams</b><span>View Finals</span></div>
+            </div>
         </div>
 
-        <a href="view-submissions.html" class="dash-footer-link">
-            <div class="dash-action-bar">VIEW SUBMISSIONS</div>
-        </a>
+        <div id="viewArea">
+            <div id="submissionGrid" class="submission-grid"></div>
+        </div>
     </div>
 
+    <div id="lightbox" onclick="this.style.display='none'"><img id="fullImg"></div>
+
     <script>
+        const hardCodedData = [
+            { title: "Quiz 1", proof: "quizzes/quiz1.jpeg" },
+            { title: "Quiz 2 - HTML", proof: "quizzes/quiz2.jpeg" },
+            { title: "Quiz 3 - CSS", proof: ["quizzes/quiz3_1.jpeg", "quizzes/quiz3_2.jpeg"] },
+            { title: "LABORATORY WORK - CAROUSELL", proof: "lab1.jpeg" }
+        ];
+
+        function showCategory(type) {
+            const dashboard = document.getElementById('mainDashboard');
+            const viewArea = document.getElementById('viewArea');
+            const grid = document.getElementById('submissionGrid');
+            const label = document.getElementById('sectionLabel');
+            const backBtn = document.getElementById('backBtn');
+
+            dashboard.style.display = 'none';
+            viewArea.style.display = 'block';
+            label.textContent = type.toUpperCase() + "S";
+            backBtn.textContent = "← BACK TO DASHBOARD";
+            backBtn.onclick = showDashboard;
+
+            grid.innerHTML = "";
+            const localData = JSON.parse(localStorage.getItem('academicData')) || [];
+            const allItems = [...hardCodedData, ...localData];
+
+            allItems.forEach(item => {
+                if (item.title.toLowerCase().includes(type)) {
+                    const img = Array.isArray(item.proof) ? item.proof[0] : item.proof;
+                    grid.innerHTML += `
+                        <div class="sub-card">
+                            <img src="${img}" onclick="openImg('${img}')">
+                            <b>${item.title}</b>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        function showDashboard() {
+            window.location.href = "index.html"; // If actually on Dashboard and wanting Home
+            // If you want to just toggle back:
+            document.getElementById('mainDashboard').style.display = 'grid';
+            document.getElementById('viewArea').style.display = 'none';
+            document.getElementById('sectionLabel').textContent = "Dashboard";
+            const backBtn = document.getElementById('backBtn');
+            backBtn.textContent = "← BACK TO HOME";
+            backBtn.onclick = () => window.location.href = "index.html";
+        }
+
+        function openImg(src) {
+            document.getElementById('fullImg').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
         function updateGreeting() {
-            const greet = document.getElementById('greet');
             const hour = new Date().getHours();
-            let welcome = "Good Evening";
-
-            if (hour < 12) welcome = "Good Morning";
-            else if (hour < 18) welcome = "Good Afternoon";
-
-            greet.textContent = `${welcome}, Helaena!`;
+            let welcome = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+            document.getElementById('greet').textContent = `${welcome}, Helaena!`;
         }
         updateGreeting();
     </script>
-
 </body>
 </html>
