@@ -155,18 +155,33 @@
             opacity: 0.7;
         }
 
-        .dashboard-link-btn {
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-link-btn, .submissions-link-btn {
             display: inline-block;
             text-decoration: none;
-            background: var(--sub);
-            color: white;
-            padding: 8px 15px;
+            padding: 8px 10px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: bold;
             text-transform: uppercase;
             border: 1px solid var(--text);
-            margin-bottom: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .dashboard-link-btn {
+            background: var(--sub);
+            color: white;
+        }
+
+        .submissions-link-btn {
+            background: var(--card-bg);
+            color: white;
         }
 
         .aesthetic-blinkies {
@@ -298,7 +313,10 @@
                     <a href="#"><img src="helae/substack.jpg" class="social-icon-img" alt="Substack"></a>
                 </div>
 
-                <a href="dashboard.html" class="dashboard-link-btn">Go to Dashboard</a>
+                <div class="btn-group">
+                    <a href="dashboard.html" class="dashboard-link-btn">Dashboard</a>
+                    <a href="submissions.html" class="submissions-link-btn">Submissions</a>
+                </div>
 
                 <div class="aesthetic-blinkies">
                     <img src="helae/myheart.gif" class="blinkie-img" alt="blinkie">
