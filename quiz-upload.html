@@ -115,7 +115,7 @@
         </div>
 
         <button class="submit-btn" onclick="saveToMachine()">SUBMIT QUIZ</button>
-        <a href="dashboard.html" class="back-link">← Cancel and go back</a>
+        <a href="upload-pages.html" class="back-link">← Cancel and go back</a>
     </div>
 
     <script>
@@ -129,7 +129,7 @@
             }
 
             const newEntry = {
-                title: titleInput,
+                title: "quiz: " + titleInput,
                 file: fileInput,
                 proof: proofInput,
                 date: new Date().toLocaleDateString()
@@ -139,8 +139,8 @@
             uploads.push(newEntry);
             localStorage.setItem('academicData', JSON.stringify(uploads));
 
-            alert("Quiz uploaded!");
-            window.location.href = 'view-submissions.html';
+            alert("Quiz uploaded! Check your Dashboard.");
+            window.location.href = 'dashboard.html';
         }
     </script>
 
